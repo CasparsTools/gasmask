@@ -60,7 +60,7 @@ import requests
 import time
 import shodan
 import pprint
-# import pdb
+ import pdb
 
 #######################################################
 
@@ -102,7 +102,7 @@ def print_short(res):
     :return:
     """
     max_title_len = 50
-    # public_info = []
+     public_info = []
     title_head = 'Title: '
     cut = '[...]'
     http_title = res.get('80.http.get.title', 'N/A')
@@ -186,9 +186,9 @@ def CensysPublicReport(engine, public_info, output_basename):
 
             for publicscan in public_info:
                 txt.write("%s\n" % publicscan)
-                # md.write("* {}\n".format(publicscan))
-                # xml.write("<Public_Censys>{}</Public_Censys>\n".format(publicscan))
-                # html.write("<li>{}</li>\n" % publicscan)
+                 md.write("* {}\n".format(publicscan))
+                 xml.write("<Public_Censys>{}</Public_Censys>\n".format(publicscan))
+                 html.write("<li>{}</li>\n" % publicscan)
 
             html.write("</ul>\n")
             xml.write("</Censys>\n")
@@ -1283,7 +1283,7 @@ def ShodanReport(results, output_basename):
     print('------------------')
     print()
 
-    # pdb.set_trace()
+     pdb.set_trace()
 
     for result in results['matches']:
 
@@ -1291,7 +1291,7 @@ def ShodanReport(results, output_basename):
         print('IP: %s' % result['ip_str'])
         print('-------------------')
         print('Hostnames: ' + ','.join(result['hostnames']))
-        print('Organization: %s' % result.get('org', 'n/a'))
+        print('Organisation: %s' % result.get('org', 'n/a'))
         print('Operating System: %s' % result.get('os', 'n/a'))
         print('Port: %s' % result['port'])
 
@@ -1336,7 +1336,7 @@ def ShodanReport(results, output_basename):
                 PrintField("Hostnames", hostnames, txt, md, xml, html)
 
                 # Print Organization
-                PrintField("Organization", organization, txt, md, xml, html)
+                PrintField("Organisation", organization, txt, md, xml, html)
 
                 # Print Operating System
                 PrintField("OS", os, txt, md, xml, html)
@@ -1905,15 +1905,15 @@ def MainFunc():
 
     # TODO tags/fields missing:
     # fire help before doing any request
-    # if args.tags in ['list', 'help']:
-    #     pp.pprint(tags_available)
-    #     sys.exit(0)
-    # if args.report in ['list', 'help']:
-    #     pp.pprint(report_fields)
-    #     sys.exit(0)
-    # if args.filter in ['list', 'help']:
-    #     pp.pprint(filter_fields)
-    #     sys.exit(0)
+     if args.tags in ['list', 'help']:
+         pp.pprint(tags_available)
+         sys.exit(0)
+     if args.report in ['list', 'help']:
+         pp.pprint(report_fields)
+         sys.exit(0)
+     if args.filter in ['list', 'help']:
+         pp.pprint(filter_fields)
+         sys.exit(0)
 
     if args.report_bucket:
         report_buckets = args.report_bucket
@@ -1922,7 +1922,7 @@ def MainFunc():
         parser.print_help()
         sys.exit()
 
-    # args = parser.parse_args()
+     args = parser.parse_args()
     info['domain'] = args.domain
     info['proxies'] = {}
 
@@ -2029,7 +2029,7 @@ def MainFunc():
     # Shodan search #
     if any(i in ['shodan'] for i in info['mode']):
 
-        # pdb.set_trace()
+         pdb.set_trace()
 
         if args.shodankey is None:
             print("[-] API key required for the Shodan search: '-k API-KEY, --shodan-key API-KEY'")
